@@ -98,7 +98,9 @@ inline Line_Obstacle disableLine(0, FIELD_NEG_HALF_LENGTH, 0, FIELD_HALF_LENGTH)
 inline Circle_Obstacle centerGoals(0, 0, 5);
 
 void initialize() {
-	pros::lcd::initialize();
+    pros::lcd::initialize();
+
+    RclMain.startTracking();
 }
 
 
