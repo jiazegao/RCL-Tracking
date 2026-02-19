@@ -22,7 +22,7 @@ angular_controller, // angular PID settings
 sensors // odometry sensors
 );
 
-RclTracking RclMain ( &chassis );
+> RclTracking RclMain ( &chassis );
 
 ### RclSensor
 1. The constructor takes 4 arguments:
