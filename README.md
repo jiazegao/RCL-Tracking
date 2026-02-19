@@ -16,12 +16,7 @@
 - "double maxDelta" - The maximum allowed difference in the calculated x / y coordinate of a sensor and the lemlib bot position for the calculation result to be recognized; this can be used to account for objects on the field; default is 3.0 inches.
 
 > e.g.
-lemlib::Chassis chassis(drivetrain, // drivetrain settings
-lateral_controller, // lateral PID settings
-angular_controller, // angular PID settings
-sensors // odometry sensors
-);
-
+lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sensors );
 > RclTracking RclMain ( &chassis );
 
 ### RclSensor
@@ -31,11 +26,7 @@ sensors // odometry sensors
 - Vertical offset of the sensor relative to the tracking center (in inches; forward -> positive; backward -> negative)
 - The heading of the sensor (Forward -> 0; Right -> 90; Backward -> 180; Left -> 270)
 
-e.g. 	pros::Distance distance (2);
-RclSensor sensor1 (	&distance	-> Pointer to "distance"
-3.0		-> The sensor is 3.0 inches to the right of the tracking center
--2.9		-> The sensor is 2.9 inches backward from the tracking center
-90);		-> The sensor is facing toward the right.
+> e.g. 	pros::Distance distance (2); RclSensor sensor1 (	&distance, 3.0, -2.9, 90);		-> A sensor 3.0 inches to the right and 2.9 inches to the back of the tracking center; facing right
 
 ### Circle Obstacle Declarations
 1. The constructer takes 3 arguments:
