@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "name": "PROS Project",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "d:\\Robotics\\Robotics\\PROS Projects\\Season 2025-2026\\Flashbang_1239E_2025-26\\RCL Tracking\\include"
+      ],
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "compilerPath": "c:\\Users\\jiaze\\AppData\\Roaming\\Code\\User\\globalStorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\arm-none-eabi-g++",
+      "cStandard": "gnu11",
+      "cppStandard": "gnu++20",
+      "intelliSenseMode": "gcc-arm",
+      "browse": {
+        "path": [
+          "d:\\Robotics\\Robotics\\PROS Projects\\Season 2025-2026\\Flashbang_1239E_2025-26\\RCL Tracking"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      }
+    }
+  ],
+  "version": 4
+}
