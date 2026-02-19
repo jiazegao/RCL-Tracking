@@ -50,8 +50,8 @@ lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sens
 
 4. To get the current position of the bot calculated by RclMain, use the method "RclMain.getRclPose()." (If autoSync is enabled, this should be close to, if not the exact same as, the position of lemlib::chassis.)
 
-5. Sensor values will vary even if the bot is not moving at all. If you know for sure that the bot is not moving and want higher accuracy, call "RclMain.startAccumulating()". Once called, the values of each sensor will start to accumulate in the background. To stop the accumulation, call "RclMain.stopAccumulating ()". Once called, the sensor values will stop accumulating, and the average reading of each sensor will be will proceed to position calculations. However, note that:
+5. Sensor values will vary even if the bot is not moving at all. If you know for sure that the bot is not moving and want higher accuracy, call "RclMain.startAccumulating()". Once called, the values of each sensor will start to accumulate in the background. To stop the accumulation, call "RclMain.stopAccumulating ()". Once called, the sensor values will stop accumulating, and the average reading of each sensor will proceed to position calculations. However, note that:
 - minDelta detection will be temporarily disabled during this process;
 - even if autoSync is disabled, the position of the bot in lemlib will still be synced after the position of the bot has been calculated based on the average sensor readings.
 
-6. If you're resetting the position of the lemlib chassis, make sure you also call "RclMain.setRclPose( lemlib::Pose newPosition )" to reset the position for RclMain.
+6. (!!!) If you're resetting the position of the lemlib chassis, make sure you also call "RclMain.setRclPose( lemlib::Pose newPosition )" to reset the position for RclMain.
