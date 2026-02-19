@@ -75,10 +75,10 @@ inline pros::Distance front_dist(9);
 inline pros::Distance left_dist(10);
 
 // Rcl setup
-inline RclSensor front_rcl(&front_dist, -1.0, 3.2, 0.0, 15.0);
-inline RclSensor right_rcl(&right_dist, 4.5, 0.0, 90.0, 15.0);
-inline RclSensor back_rcl(&back_dist, 5.375, -4.25, 180.0, 15.0);
-inline RclSensor left_rcl(&left_dist, 4.5, 0.0, 270.0, 15.0);
+inline RclSensor front_rcl(&front_dist, -1.0, 3.2, 0.0, 15.0);  // 1 inch to the left; 3.2 inches to the front; facing front
+inline RclSensor right_rcl(&right_dist, 4.5, 0.0, 90.0, 15.0);  // 4.5 inches to the right; 0 vertical offset; facing right
+inline RclSensor back_rcl(&back_dist, 5.375, -4.25, 180.0, 15.0);   // 5.375 inches to the right; 4.25 inches to the back; facing back
+inline RclSensor left_rcl(&left_dist, -4.5, 0.0, 270.0, 15.0);   // 4.5 inches to the left; 0 vertical offset, facing left
 inline RclTracking RclMain(&chassis, 30, true, 0.5, 4.0, 10.0, 6.0, 20);
 
 // loaders
@@ -92,10 +92,10 @@ inline Circle_Obstacle upLongGoalLeft(-21, 47.5, 4);
 inline Circle_Obstacle upLongGoalRight(21, 47.5, 4);
 inline Circle_Obstacle downLongGoalLeft(-21, -47.5, 4);
 inline Circle_Obstacle downLongGoalRight(21, -47.5, 4);
-
-// Disable Line
-inline Line_Obstacle disableLine(0, FIELD_NEG_HALF_LENGTH, 0, FIELD_HALF_LENGTH);
 inline Circle_Obstacle centerGoals(0, 0, 5);
+
+// Disable Line for the autonomous period
+inline Line_Obstacle disableLine(0, FIELD_NEG_HALF_LENGTH, 0, FIELD_HALF_LENGTH);
 
 void initialize() {
     pros::lcd::initialize();
@@ -108,7 +108,12 @@ void disabled() {}
 
 void competition_initialize() {}
 
-void autonomous() {}
+void autonomous() {
+    // EXAMPLES
+    RclMain.updateBotPose(&left_rcl);   // Distance reset on the left sensor
+    RclMain.updateBotPose();    // Standard sync to chassis
+    RclMain.setRclPose(chassis.getPose());  // Reset Rcl Pose to Lemlib Pose
+}
 
 void opcontrol() {
 	while (true) {
