@@ -1,5 +1,7 @@
 # RCL Tracking
 
+Welcome to RCL Tracking! This is a lemlib plug-in that enables continuous, automatic distance resets in the background.
+
 ## File Setup
 1. Copy and paste "RclTracking.hpp" into the "include" folder in the PROS project
 2. Copy and paste "RclTracking.cpp" into the "src" folder in the PROS project
@@ -12,8 +14,11 @@
 2. The constructor takes multiple optional arguments:
 - "int frequency" - Records the amount of refreshes per second; default is 20hz.
 - "bool autoSync" - If set to true, enables automatic sync to lemlib::chassis; default is true.
-- "double minDelta" - The minimum allowed difference in the calculated x / y coordinate of a sensor and the lemlib bot position for the calculation result to be recognized; this can be used to account for sensor reading variations; default is 1.2 inches.
-- "double maxDelta" - The maximum allowed difference in the calculated x / y coordinate of a sensor and the lemlib bot position for the calculation result to be recognized; this can be used to account for objects on the field; default is 3.0 inches.
+- "double minDelta" - The minimum allowed difference in the calculated x / y coordinate of a sensor and the lemlib bot position for the calculation result to be recognized; this can be used to account for sensor reading variations; default is 0.5 inch.
+- "double maxDelta" - The maximum allowed difference in the calculated x / y coordinate of a sensor and the lemlib bot position for the calculation result to be recognized; this can be used to account for objects on the field; default is 4.0 inches.
+- "double maxDeltaFromLemlib" - This maximum allowed difference between Rcl Position and Lemlib Position; serves as a fail safe for Rcl. Default is 10.0 inches.
+- "double maxSyncPerSec" - The maximum allowed sync rate in inches / second. Default is 3.0 inches.
+- "int minPause" - The minimum pause time of Rcl mainLoop; ensures that Rcl doesn't take up too much resource; default is 20 ms.
 
 > e.g.
 lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sensors );
@@ -25,16 +30,21 @@ lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sens
 - Horizontal offset of the sensor relative to the tracking center (in inches; right -> positive; left -> negative)
 - Vertical offset of the sensor relative to the tracking center (in inches; forward -> positive; backward -> negative)
 - The heading of the sensor (Forward -> 0; Right -> 90; Backward -> 180; Left -> 270)
+2. The constructor takes 1 optional argument:
+- "double angleTol" - The maximum allowed heading deviation of a sensor from a 90-degree angle for its readings to proceed to calculation; a lower value generally increases accuracy; default is 10.0 degrees.
 
 > e.g. 	pros::Distance distance (2); RclSensor sensor1 (	&distance, 3.0, -2.9, 90);		-> A sensor 3.0 inches to the right and 2.9 inches to the back of the tracking center; facing right
 
 ### Circle Obstacle Declarations
 1. The constructer takes 3 arguments:
-- The x coordinate of the origin of the obstacle
-- The y coordinate of the origin of the obstacle
-- The radius of the obstacle
+- "double x" - The x coordinate of the origin of the obstacle
+- "double y" - The y coordinate of the origin of the obstacle
+- "double r" - The radius of the obstacle
 
-> e.g.	obstacle obstacle1 ( 12.8, -32.1, 4.0 );	-> An obstacle located at (12.8, -32.1) with a radius of 4.0 inches.
+### Line Obstacle Declarations
+1. The constructer takes 3 arguments:
+- "double x1" & "double y1" - The coordinate of the start of the line segment
+- "double x2" & "double y2" - The coordinate of the end of the line segment
 
 ## How to Use
 
