@@ -65,3 +65,5 @@ lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sens
 - even if autoSync is disabled, the position of the bot in lemlib will still be synced after the position of the bot has been calculated based on the average sensor readings.
 
 6. (!!!) If you're resetting the position of the lemlib chassis, make sure you also call "RclMain.setRclPose( lemlib::Pose newPosition )" to reset the position for RclMain.
+
+7. We strongly suggest resetting your robot's location using several "RclMain.updateBotPose(&RclSensor)" at the beginning of each autonomous run. However, keep in mind that "RclMain.setRclPose( lemlib::Pose newPosition )" should be called prior to this process, and that you should only reset using sensors that are not obstructed (e.g. if you are starting on the left side, and your robot is facing toward the center line, you should consider resetting using your left and the back sensors.)
