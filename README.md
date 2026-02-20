@@ -42,7 +42,7 @@ lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sens
 - "double r" - The radius of the obstacle
 
 ### Line Obstacle Declarations
-1. The constructer takes 3 arguments:
+1. The constructer takes 2 arguments:
 - "double x1" & "double y1" - The coordinate of the start of the line segment
 - "double x2" & "double y2" - The coordinate of the end of the line segment
 
