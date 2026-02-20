@@ -31,7 +31,7 @@ lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sens
 - Vertical offset of the sensor relative to the tracking center (in inches; forward -> positive; backward -> negative)
 - The heading of the sensor (Forward -> 0; Right -> 90; Backward -> 180; Left -> 270)
 2. The constructor takes 1 optional argument:
-- "double angleTol" - The maximum allowed heading deviation of a sensor from a 90-degree angle for its readings to proceed to calculation; a lower value generally increases accuracy; default is 10.0 degrees.
+- "double angleTol" - The maximum allowed heading deviation of a sensor from a 90-degree angle for its readings to proceed to calculation; a lower value generally increases accuracy; default is 15.0 degrees.
 
 > e.g. 	pros::Distance distance (2); RclSensor sensor1 (	&distance, 3.0, -2.9, 90);		-> A sensor 3.0 inches to the right and 2.9 inches to the back of the tracking center; facing right
 
